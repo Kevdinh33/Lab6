@@ -39,18 +39,29 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-      fetch('https://utils.pauliankline.com/stops.json')
-      .then((resp) => resp.json())
-      .then(data => { new Vue({
-        el: '#app',
-        data:{
-            stops: [
-              {text: data}
-            ]
-          }
-        })
-      })
-      .catch(error => console.error(error))
+    function chunkArray(array,chunk){
+      //split 1d array into array of chunks
+      let temparray,i,results=[];
+      for (i = 0; i < 365; i += chunk) {
+        //here is where we slice up the acual data items into chunks
+        temparray = array.slice(i, i + chunk);
+        results.push(temparray);
+        }
+      return results;
+    }
+    </script>
+    <script>
+     new Vue({
+      el: '#app',
+      data:{
+          stops: []
+      },
+      mounted () {
+        fetch('https://utils.pauliankline.com/stops.json')
+        .then((resp) => resp.json())
+        .then((data) => data.id)
+      }
+    })
     </script>
  </body>
 </html>
