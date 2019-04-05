@@ -11,18 +11,28 @@
    crossorigin="anonymous"
    />
  </head>
- <body>
+ <body
 
-    <div class="container">
-      <div id="app">
-        <ol>
-          <li v-for="stop in stops" :key="stop.id">
-            {{ stop.text }}
-          </li>
-        </ol>
-      </div>
-    </div>
 
+<!--stop container-->
+   <div class="container">
+     <div id="stops">
+       {{ message }}
+     </div>
+   </div>
+
+<!--fetching API-->
+  <<script type="text/javascript">
+   fetch('http://example.com/movies.json')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(JSON.stringify(myJson));
+  });
+  </script>
+
+<!--bootstrap script-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous">
@@ -37,20 +47,17 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous">
     </script>
+
+<!--Vue script-->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-      fetch('https://utils.pauliankline.com/stops.json')
-      .then((resp) => resp.json())
-      .then(data => { new Vue({
-        el: '#app',
-        data:{
-            stops: [
-              {text: data}
-            ]
-          }
-        })
+      var stops = new Vue({
+        el: '#stops',
+        data: {
+          message: 'Hello'
+        }
       })
-      .catch(error => console.error(error))
     </script>
+
  </body>
 </html>
