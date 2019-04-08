@@ -20,7 +20,7 @@
       <br>
       <div id="app">
         <form>
-          <center><input v-model="numStops" type="number" min="0" value="10"></center>
+          <center><input v-model="numStops" type="number" min="0" max="365" value="10"></center>
         </form>
         <br>
           <div v-for="stop in filteredStops" :key="stop.id">
@@ -52,6 +52,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
+    //code adapted from https://www.w3schools.com/js/js_math.asp
     function convertToRadians(number)
     {
       return (number*Math.PI/180);
