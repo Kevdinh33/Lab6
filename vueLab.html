@@ -14,13 +14,14 @@
  <body>
    <div class="container">
     <div class="jumbotron">
-      <center><h1>Hawk Stops</h1></center>
+      <center><h1 class="display-4">Hawk Stops</h1></center>
       <br>
-      <center><p>Find the bus stops nearest you</p></center>
+      <center><p class="lead">Find the bus stops nearest you.</p></center>
+      <hr class="my-4">
       <br>
       <div id="app">
         <form>
-          <center><input v-model="numStops" type="number" min="0" max="365" value="10"></center>
+          <center><p>Number of stops shown:</p><input v-model="numStops" type="number" min="0" max="365" value="10"></center>
         </form>
         <br>
           <div v-for="stop in filteredStops" :key="stop.id">
@@ -97,6 +98,7 @@
           return resp.json();
         })
         .then((resp) => this.stops=resp)
+        //code adapted from the lab reference https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
         if ("geolocation" in navigator) {
           function geo_success(position) {
             this.latitude = position.coords.latitude
